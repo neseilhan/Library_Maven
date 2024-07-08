@@ -1,12 +1,15 @@
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id" , columnDefinition = "serial")
-    private int id; //veritabanındaki isme karsılık gelmek zorunda degil.
+    private int id; //It does not have to correspond to the name in the database.
 
     @Column(name = "book_name" , length=100, nullable = false)
     private String name;
@@ -16,6 +19,25 @@ public class Book {
 
     @Column(name = "stock", nullable = false)
     private int stock;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_author_id", referencedColumnName = "author_id")
+    private Author author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_publisher_id", referencedColumnName = "publisher_id")
+    private Publisher publisher;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BookBorrowing> bookBorrowingList;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "book_category",
+            joinColumns = { @JoinColumn(name = "book_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+    )
+    private Set<Category> categorieSet;
 
     public Book() {
     }
@@ -50,5 +72,37 @@ public class Book {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public List<BookBorrowing> getBookBorrowingList() {
+        return bookBorrowingList;
+    }
+
+    public void setBookBorrowingList(List<BookBorrowing> bookBorrowingList) {
+        this.bookBorrowingList = bookBorrowingList;
+    }
+
+    public Set<Category> getCategorieSet() {
+        return categorieSet;
+    }
+
+    public void setCategorieSet(Set<Category> categorieSet) {
+        this.categorieSet = categorieSet;
     }
 }
