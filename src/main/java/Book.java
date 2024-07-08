@@ -34,10 +34,10 @@ public class Book {
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "book_category",
-            joinColumns = { @JoinColumn(name = "book_id") },
-            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+            joinColumns = { @JoinColumn(name = "book_category_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_book_id") }
     )
-    private Set<Category> categorieSet;
+    private Set<Category> categorySet;
 
     public Book() {
     }
@@ -99,10 +99,10 @@ public class Book {
     }
 
     public Set<Category> getCategorieSet() {
-        return categorieSet;
+        return categorySet;
     }
 
     public void setCategorieSet(Set<Category> categorieSet) {
-        this.categorieSet = categorieSet;
+        this.categorySet = categorieSet;
     }
 }

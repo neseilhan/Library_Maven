@@ -8,7 +8,7 @@ public class App {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("library");
         //The settings to be used when connecting to the database have been determined.
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        System.out.println("test");
+//        System.out.println("test");
 
         //Initiates and executes transaction operations.
         EntityTransaction transaction = entityManager.getTransaction();
