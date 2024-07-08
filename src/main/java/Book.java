@@ -98,11 +98,25 @@ public class Book {
         this.bookBorrowingList = bookBorrowingList;
     }
 
-    public Set<Category> getCategorieSet() {
+    public Set<Category> getCategorySet() {
         return categorySet;
     }
 
-    public void setCategorieSet(Set<Category> categorieSet) {
+    public void setCategorySet(Set<Category> categorieSet) {
         this.categorySet = categorieSet;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", publicationYear='" + publicationYear + '\'' +
+                ", stock=" + stock +
+                ", author=" + author +
+                ", publisher=" + publisher +
+                ", bookBorrowingList=" + bookBorrowingList +
+                ", categorySet=" + categorySet +
+                '}';
     }
 }
