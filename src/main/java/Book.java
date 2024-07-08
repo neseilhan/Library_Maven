@@ -21,12 +21,12 @@ public class Book {
     private int stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_author_id", referencedColumnName = "author_id")
+    @JoinColumn(name = "book_author_id")
     private Author author;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_publisher_id", referencedColumnName = "publisher_id")
-    private Publisher publisher;
+    @JoinColumn(name = "book_publisher_id")
+    private  Publisher publisher;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BookBorrowing> bookBorrowingList;

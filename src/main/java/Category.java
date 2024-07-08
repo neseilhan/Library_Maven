@@ -16,7 +16,7 @@ public class Category {
     @Column(name = "description", nullable = false)
     private String descripton;
 
-    @ManyToMany(mappedBy = "category")
+    @ManyToMany(mappedBy = "categorySet")
     private Set<Book> bookSet;
 
     public Category() {

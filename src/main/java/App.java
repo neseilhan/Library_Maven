@@ -13,6 +13,8 @@ public class App {
         //Initiates and executes transaction operations.
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
+
+
         transaction.commit();
 
 
